@@ -1,6 +1,6 @@
 # Hamiltonian Neural ODE
 
-This project aims to explore Hamiltonian Neural Networks (HNNs) coupled with Neural Ordinary Differential Equations (Neural ODEs) for predicting the evolution of dynamical systems.
+This project aims to explore [Hamiltonian Neural Networks (HNNs)](https://arxiv.org/abs/1906.01563) coupled with[ Neural Ordinary Differential Equations (Neural ODEs)](https://arxiv.org/abs/1806.07366) for predicting the evolution of dynamical systems.
 The goal is to learn the Hamiltonian of the system and then infer the dynamics from it using Hamilton's equartions, rather than directly learning the map between consequtive states.
 The advantage of this approach is being able to ensure energy conservation and promotes stability in autoregressive inference mode.
 
