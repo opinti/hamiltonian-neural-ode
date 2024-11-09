@@ -20,9 +20,9 @@ class DoubleMassSpring:
     """
 
     M1 = 1
-    K1 = 25
+    K1 = 10
     M2 = 1
-    K2 = 25
+    K2 = 10
     L1 = 2
     L2 = 2
 
@@ -207,6 +207,7 @@ class DoubleMassSpring:
         t_eval: np.ndarray,
         q_lim: Tuple[float, float] = (-1, 1),
         q_dot_lim: Tuple[float, float] = (-0.5, 0.5),
+        initial_conditions: Tuple[float, float, float, float] = None,
         return_trajectories: bool = False,
         noise_level: float = 0.0,
     ) -> Union[TensorDataset, Tuple[TensorDataset, torch.Tensor, torch.Tensor]]:
@@ -225,12 +226,21 @@ class DoubleMassSpring:
         Returns:
             Union[TensorDataset, Tuple[TensorDataset, torch.Tensor, torch.Tensor]]: Dataset containing simulation data.
         """
+        if initial_conditions is not None and num_simulations > 1:
+            raise ValueError(
+                "If initial_conditions is provided, num_simulations must be 1."
+            )
+
         inputs, targets = [], []
         for _ in range(num_simulations):
-            q1, q2 = np.random.uniform(*q_lim, size=2)
-            q1_dot, q2_dot = np.random.uniform(*q_dot_lim, size=2)
-            simulation_data = self.simulate(q1, q2, q1_dot, q2_dot, t_span, t_eval)
 
+            if initial_conditions is not None:
+                q1, q2, q1_dot, q2_dot = initial_conditions
+            else:
+                q1, q2 = np.random.uniform(*q_lim, size=2)
+                q1_dot, q2_dot = np.random.uniform(*q_dot_lim, size=2)
+
+            simulation_data = self.simulate(q1, q2, q1_dot, q2_dot, t_span, t_eval)
             canonical_coords = torch.tensor(
                 simulation_data["canonical_coords"], dtype=torch.float32
             ).reshape(-1, 4)
