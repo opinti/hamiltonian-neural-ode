@@ -2,7 +2,7 @@
 
 ## Basics
 
-- **Cartesian coordinates** $ \mathbf{x} = [x_1, x_2, \dots] $ are the coordinates of a point in 2D or 3D space.
+- **Cartesian coordinates** $\mathbf{x} = [x_1, x_2, \dots]$ are the coordinates of a point in 2D or 3D space.
 
 - **Velocities** $ \dot{\mathbf{x}} = [\dot{x}_1, \dot{x}_2, \dots] $ are the rate of change of coordinates with respect to time.
 
