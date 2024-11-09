@@ -1,0 +1,7 @@
+.vscode/
+.DS_Store
+
+src/__pycache__/
+src/mechanical_systems/__pycache__/
+
+experiments/hamiltonian-nn copy.ipynb
